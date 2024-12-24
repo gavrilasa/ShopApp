@@ -19,6 +19,11 @@ app.get('/', (req, res) => {
     res.send('Project Set Up Succeed')
 })
 
+app.get('/products', async (req, res) => {
+    const products = await Product.find({})
+    res.render('products/index', { products })
+})
+
 app.listen(3000, () => {
     console.log('ShopApp listening on http://127.0.0.1:3000')
 })

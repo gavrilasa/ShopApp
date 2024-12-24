@@ -10,11 +10,19 @@
 		<ul>
 			<li>Brand: <%= product.brand %></li>
 			<li>Warna: <%= product.color %></li>
-			<li>Kategori: <%= product.category %></li>
 			<li>Harga: <%= product.price %></li>
+			<li>
+				Kategori:
+				<a href="/products?category=<%= product.category %>">
+					<%= product.category %>
+				</a>
+			</li>
 
 			<a href="/products/<%= product._id %>/edit">Edit</a>
 			<a href="/products">Back</a>
+			<form action="/products/<%= product._id %>?_method=DELETE" method="post">
+				<button type="submit">Delete</button>
+			</form>
 		</ul>
 	</body>
 </html>

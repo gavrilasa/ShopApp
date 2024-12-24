@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const path = require('path')
 const app = express()
 
+const Product = require('./models/product')
+
 mongoose.connect('mongodb://127.0.0.1/shop_db')
     .then((result) => {
         console.log('Connected to MongoDB')

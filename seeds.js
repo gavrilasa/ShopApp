@@ -14,72 +14,73 @@ const seedProducts = [
         brand: "Uniqlo",
         price: 149000,
         color: "White",
-        size: "M"
+        category: "Baju"
     },
     {
         name: "Slim Fit Formal Shirt",
         brand: "Zara",
         price: 349000,
         color: "Light Blue",
-        size: "L"
+        category: "Baju"
     },
     {
         name: "Air Max Running Shoes",
         brand: "Nike",
         price: 899000,
         color: "Black",
-        size: "L"
+        category: "Aksesoris"
     },
     {
         name: "Classic Leather Biker Jacket",
         brand: "H&M",
         price: 1299000,
         color: "Brown",
-        size: "XL"
+        category: "Jaket"
     },
     {
         name: "Smart Chino Trousers",
         brand: "Dockers",
         price: 499000,
         color: "Beige",
-        size: "M"
+        category: "Celana"
     },
     {
         name: "501 Original Fit Jeans",
         brand: "Levi's",
         price: 799000,
         color: "Dark Blue",
-        size: "L"
+        category: "Celana"
     },
     {
         name: "Essentials Pullover Hoodie",
         brand: "Adidas",
         price: 549000,
         color: "Gray",
-        size: "XL"
+        category: "Jaket"
     },
     {
         name: "Classic Fit Polo Shirt",
         brand: "Lacoste",
         price: 499000,
         color: "Green",
-        size: "S"
+        category: "Baju"
     },
     {
         name: "ThermoBall Eco Insulated Jacket",
         brand: "The North Face",
         price: 1499000,
         color: "Navy",
-        size: "M"
+        category: "Jaket"
     },
     {
         name: "Floral Print Summer Dress",
         brand: "Forever 21",
         price: 329000,
         color: "Pink",
-        size: "S"
+        category: "Baju"
     }
 ];
+
 
 Product.insertMany(seedProducts).then((result) => {
     console.log(result)

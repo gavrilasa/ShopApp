@@ -1,23 +1,25 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const garmentSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'Name Cant be Empty']
+        required: [true, "Name Cant be Empty"],
     },
     location: {
-        type: String
+        type: String,
     },
     contact: {
         type: String,
-        required: [true, 'Contact Cant be Empty']
+        required: [true, "Contact Cant be Empty"],
     },
-    products: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
-    }
-})
+    products: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Product"
+        }
+    ],
+});
 
-const Garment = mongoose.model('Garment', garmentSchema)
+const Garment = mongoose.model("Garment", garmentSchema);
 
-module.exports = Garment
+module.exports = Garment;

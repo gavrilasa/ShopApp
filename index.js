@@ -8,6 +8,7 @@ const { validatorHandler, castHandler } = require("./utils/mongooseHandler");
 const wrapAsync = require("./utils/wrapAsync");
 
 const Product = require("./models/product");
+const Garment = require("./models/garment")
 
 mongoose
     .connect("mongodb://127.0.0.1/shop_db")
@@ -26,6 +27,27 @@ app.use(methodOverride("_method"));
 app.get("/", (req, res) => {
     res.send("Project Set Up Succeed");
 });
+
+app.get('/garments', wrapAsync(async (req, res) => {
+    const garments = await Garment.find({})
+    res.render('garment/index', { garments })
+}))
+
+app.get('/garments/create', (req, res) => {
+    res.render('garment/create')
+})
+
+app.post('/garments', wrapAsync(async (req, res) => {
+    const garment = new Garment(req.body)
+    await garment.save()
+    res.redirect(`/garments/${garment._id}}`)
+}))
+
+app.get('/garments/:id', wrapAsync(async (req, res) => {
+    const { id } = req.params
+    const garment = await Garment.findById(id)
+    res.render('garment/show', { garment })
+}))
 
 app.get("/products", async (req, res) => {
     const { category } = req.query;

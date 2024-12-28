@@ -2,6 +2,8 @@ const express = require("express");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const path = require("path");
+const session = require('express-session')
+const flash = require('connect-flash')
 const app = express();
 
 const { validatorHandler, castHandler } = require("./utils/mongooseHandler");
@@ -23,6 +25,17 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(session({
+    secret: 'keyboard-warrior',
+    resave: false,
+    saveUninitialized: false
+}))
+app.use(flash())
+
+app.use((req, res, next) => {
+    res.locals.flash_messages = req.flash('flash_messages')
+    next()
+})
 
 app.get("/", (req, res) => {
     res.send("Project Set Up Succeed");
@@ -40,7 +53,8 @@ app.get('/garments/create', (req, res) => {
 app.post('/garments', wrapAsync(async (req, res) => {
     const garment = new Garment(req.body)
     await garment.save()
-    res.redirect(`/garments/${garment._id}}`)
+    req.flash('flash_messages', 'Successfully add new Garment')
+    res.redirect(`/garments`)
 }))
 
 app.get('/garments/:id', wrapAsync(async (req, res) => {
